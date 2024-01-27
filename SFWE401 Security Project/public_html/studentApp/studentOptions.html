@@ -1,0 +1,60 @@
+<!-- 
+Authors: Joseph Cortez
+         Kyle Walker
+         Noel Poothokaran
+         Skyler DeVaughn
+Course: Csc 337 Webdev Benjamin Dicken Fall 2023
+Purpose:  Student home page where users can wait and play embedded games while waiting for their turn in queue. Has main div for embedded games,
+        a combo selection box for switching games, a link to the live queue page, and a button for leaving the queue. There are also some helper
+        messages to guide users through relevant navigation options.
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Lounge</title>
+        <link rel="stylesheet" type="text/css" href="studentOptions.css">
+        <link rel="icon" type="image/x-icon" href="../img/uofa.jpg">
+        <script src="studentClient.js"></script>
+    </head>
+    <body>
+        <div class="siteBanner">
+            <img src="../img/UACollegeOfScienceLogo.png" alt="UA College of Science CS Logo" class="siteLogo">
+        </div>
+        <div class="navigationBar" id="navigationBar">
+            <a href="../login/login.html" class="navLink" id="loginLink">Logout</a>
+            <a href="requestHelp.html" class="navLink" id="helpLink">Request Help</a>
+            <a href="studentHome.html" class="navLink" id="queueLink">Queue Home</a>
+            <a href="studentOptions.html" class="navLink" id="loungeLink">Lounge</a>
+        </div>
+        
+        <div id="mainDiv" class="mainDiv">
+            
+            <div id="game">
+                    <div id="pregame">
+                    <label for="gamesSelect" id="gameLabel">Choose a game to play while you wait!</label>
+                    <select name="gamesSelect" id="gamesSelect" onchange="changeGame()">
+                        <optgroup label="Games">
+                            <option value="https://www.lumpty.com/amusements/Games/Tetris/tetris.html">Tetris</option>
+                            <option value="https://js13kgames.com/games/super-castle-game/index.html">Blocks</option>
+                            <option value="https://patorjk.com/games/snake/">Snake</option>
+                            <option value="https://play2048.co/">2048</option>
+                        </optgroup>
+                    </select>
+                    </div>
+                    
+                    <embed src="https://www.lumpty.com/amusements/Games/Tetris/tetris.html" id="gameEmbedding">
+                        
+            </div>
+            <div class="studentOptions" id="peek">Bored of the games? See where you are in the 
+                <a href="./studentHome.html" id="queueLinkSecond"> queue</a>.
+            </div>
+            <div class="studentOptions" id="leave">
+                <div id="leaveText">Have to leave? Solved your issue? Click the button below to leave the queue.</div>
+                <button id="studentLeave" onclick="selfRemoval()">Leave Queue</button>
+            </div>
+        </div>
+    </body>
+</html>

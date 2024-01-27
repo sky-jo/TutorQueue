@@ -1,0 +1,51 @@
+<!-- 
+Authors: Joseph Cortez
+         Kyle Walker
+         Noel Poothokaran
+         Skyler DeVaughn
+Course: Csc 337 Webdev Benjamin Dicken Fall 2023
+Purpose: This is the login page containing a login form where the user can enter name and password to login, or create new accounts
+        with a button that redirects to the create new account page. Also includes an animated site header that displays announcement
+-->
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tutor Login</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="icon" type="image/x-icon" href="../img/uofa.jpg">
+    <script src="loginClient.js"></script>
+</head>
+
+<body>
+    <div class="siteBanner">
+        <img src="../img/UACollegeOfScienceLogo.png" alt="UA College of Science CS Logo" class="siteLogo">
+    </div>
+
+    <div class="navigationBar" id="navigationBar">
+        <div id="flavor">|-- Tutor of the Month: Nathan Oswald --|-- Closing for Winter Break on Dec 7 --|-- Reopening
+            Jan 12 --|
+        </div>
+    </div>
+
+    <div id="mainDiv" class="mainDiv">
+        <h1 class="pageTitle">Tutorqueue Login</h1>
+
+        <form id="loginForm">
+            <div class="inputLabel"> <label for="username">Name</label> </div>
+            <input type="text" name="username" id="username" required><br>
+            <div class="inputLabel"> <label for="password">Password</label> </div>
+            <input type="password" name="password" id="password" required><br>
+            <button type="submit">Login</button>
+        </form>
+
+        <h2>Don't have an account yet?</h2>
+        <input type="button" name="createAccountButton" id="createAccountButton" value="Create Account"
+            onclick="createStudentPage()">
+    </div>
+</body>
+
+</html>
