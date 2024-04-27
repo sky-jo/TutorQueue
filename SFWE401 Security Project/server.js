@@ -75,8 +75,8 @@ function authenticate(req, res, next) {
   let c = req.cookies;
   if (c.login != undefined) {
     if (
-      sessions[c.login.username] != undefined &&
-      sessions[c.login.username].id == c.login.sessionID
+      sessions[c.login.username] !== undefined &&
+      sessions[c.login.username].id === c.login.sessionID
     ) {
       next();
     } else {
@@ -318,12 +318,12 @@ function encryptPassword(password) {
 app.post("/add/student/", (req, res) => {
     let name = req.body.name;
     Student.find({name: name}).then((users) => {
-        if (users.length != 0) {
+        if (users.length !== 0) {
             res.status(500).send("Username already taken: Please Try again");
         } else {
             let email = req.body.email;
             Student.find({email: email}).then((users1) => {
-                if (users1.length != 0) {
+                if (users1.length !== 0) {
                     res.status(700).send("Email already taken: Please Try again");
                 }
                 else {
@@ -354,7 +354,7 @@ app.post("/add/tutor/", (req, res) =>{
     console.log(req.body);
     let studentFind = Student.find({email: req.body.email}).exec();
     studentFind.then((result) => {
-        if (result.length == 0) {
+        if (result.length === 0) {
             res.end("FAILED_NO_STUDENT");
         }
         else if (result[0].tutorID != -1) {
@@ -379,7 +379,7 @@ app.post("/add/tutor/", (req, res) =>{
 app.post("/add/coordinator/", (req, res) => {
     let studentFind = Student.find({email: req.body.email}).exec();
     studentFind.then((result) => {
-        if (result.length == 0) {
+        if (result.length === 0) {
             res.end("FAILED_NO_STUDENT");
         }
         else {
@@ -388,7 +388,7 @@ app.post("/add/coordinator/", (req, res) => {
             tutorFind.then((results) => {
                 if (results.length == 0) {
                     res.end("FAILED_NO_STUDENT");
-                } else if (results[0].tutorCoordinationRank != -1) {
+                } else if (results[0].tutorCoordinationRank !== -1) {
                     res.end("EXISTS");
                 }
                 else {
@@ -412,9 +412,9 @@ app.post("/remove/tutor/", (req, res) => {
             let id = student[0].tutorID;
             let del = Tutor.find({tutorID: id}).exec();
             del.then((tutor) => {
-                if (tutor.length == 0) {
+                if (tutor.length === 0) {
                     res.end("FAILED_NO_STUDENT");
-                } else if (tutor[0].tutorCoordinationRank != -1) {
+                } else if (tutor[0].tutorCoordinationRank !== -1) {
                     res.end("COORD")
                 } else {
                     student[0].updateOne({tutorID: -1}).exec();
@@ -431,7 +431,7 @@ app.post("/remove/coordinator/", (req, res) => {
     let rank = Number(req.body.rank);
     let studentFind = Student.find({email: req.body.email}).exec();
     studentFind.then((student) => {
-        if (student.length == 0) {res.end("FAILED_NO_STUDENT");}
+        if (student.length === 0) {res.end("FAILED_NO_STUDENT");}
         else {
             let tutorFind = Tutor.find({tutorID: student[0].tutorID}).exec();
             tutorFind.then((tutor) => {
@@ -483,7 +483,7 @@ app.get("/student/check/queue", (req, res) => {
   }).exec();
   alreadtInQueue
     .then((result) => {
-      if (result.length != 0) {
+      if (result.length !== 0) {
         res.end("in queue");
       } else {
         res.end("not in queue");
