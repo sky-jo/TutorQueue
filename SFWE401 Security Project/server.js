@@ -124,6 +124,7 @@ setInterval(removeSessions, 2000);
 /**
  * creates an admin for testing
  */
+/** 
 app.get("/create/admin", (req, res) => {
   let adminTutor = Tutor({
     tutorID: 0,
@@ -156,7 +157,7 @@ app.get("/create/admin", (req, res) => {
       res.end("admin already created.");
     });
 });
-
+*/
 const crypto = require("crypto");
 
 /**
@@ -495,7 +496,7 @@ app.get("/student/check/queue", (req, res) => {
 });
 
 // this changed the ticket status in the db to "done"
-app.get("/finish/help/:studentEmail", (req, res) => {
+app.get("/finish/help/:studentEmail", (req) => {
     let p = QueueItem.findOne({studentEmail: req.params.studentEmail, status:"In Progress"}).exec();
     p.then((res) => {
         console.log(res.time);
